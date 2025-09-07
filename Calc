@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; width: 240px; margin: 50px auto; }
+    input[type="button"] {
+      width: 50px; height: 50px; font-size: 18px; margin: 2px;
+    }
+    #display {
+      width: 224px; height: 50px; font-size: 24px; text-align: right;
+      margin-bottom: 5px; padding-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <input id="display" type="text" disabled />
+
+  <div id="buttons">
+    <input type="button" value="7" onclick="press('7')">
+    <input type="button" value="8" onclick="press('8')">
+    <input type="button" value="9" onclick="press('9')">
+    <input type="button" value="/" onclick="press('/')"><br>
+
+    <input type="button" value="4" onclick="press('4')">
+    <input type="button" value="5" onclick="press('5')">
+    <input type="button" value="6" onclick="press('6')">
+    <input type="button" value="*" onclick="press('*')"><br>
+
+    <input type="button" value="1" onclick="press('1')">
+    <input type="button" value="2" onclick="press('2')">
+    <input type="button" value="3" onclick="press('3')">
+    <input type="button" value="-" onclick="press('-')"><br>
+
+    <input type="button" value="0" onclick="press('0')">
+    <input type="button" value="." onclick="press('.')">
+    <input type="button" value="=" onclick="calculate()">
+    <input type="button" value="+" onclick="press('+')"><br>
+
+    <input type="button" value="C" onclick="clearDisplay()" style="width: 224px;">
+  </div>
+
+  <script>
+    let expr = '';
+
+    function press(ch) {
+      expr += ch;
+      document.getElementById('display').value = expr;
+    }
+
+    function calculate() {
+      try {
+        expr = eval(expr).toString();
+        document.getElementById('display').value = expr;
+      } catch {
+        document.getElementById('display').value = 'Error';
+        expr = '';
+      }
+    }
+
+    function clearDisplay() {
+      expr = '';
+      document.getElementById('display').value = '';
+    }
+  </script>
+</body>
+</html>
